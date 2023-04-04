@@ -339,6 +339,7 @@ class MT_CNN_LSTM_B(nn.Module):
         out_m3 = self.CNN1D_LSTM_m3(x_m3)
         out_m30 = self.CNN1D_LSTM_m30(x_m30)
 
+        # 향후 config에서 detach()여부를 설정하도록 수정할 것
         tot_lstm_out = torch.cat([out_m3, out_m30.detach()], dim=1)
         #tot_lstm_out = torch.cat([out_m3, out_m30], dim=1)
         final_out = self.final_regressor(tot_lstm_out)
